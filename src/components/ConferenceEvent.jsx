@@ -1,12 +1,17 @@
 import { useDispatch, useSelector } from "react-redux"
 import { decrementQuantity, incrementQuantity } from "../slices/venueSlice"
 import { decrementAddOnQuantity, incrementAddOnQuanity } from "../slices/addOnSlice"
+import { useState } from "react"
+import { toggleMealSelection } from "../slices/mealsSlice"
 
 const ConferenceEvent = () => {
     const dispatch = useDispatch()
     
     const venueItems = useSelector((state) => state.venue) //'venue' name comes from the store.js 'venu' name
     const addOnItems = useSelector((state) => state.addOn)
+    const mealsItems = useSelector((state) => state.meals)
+
+    const [numberOfPeople, setNumberOfPeople] = useState(1)
 
     //venue functions
     const handleAddToCart = (index) => {
@@ -28,6 +33,11 @@ const ConferenceEvent = () => {
         dispatch(decrementAddOnQuantity(index))
     }
 
+    //meal function
+    const handleMealSelection = (index) => {
+        dispatch(toggleMealSelection(index))
+    }
+
 
     const calculateTotalCost = (section) => {
         let totalCost = 0
@@ -41,6 +51,13 @@ const ConferenceEvent = () => {
                 totalCost += item.cost * item.quantity
             })
         }
+        else if (section === 'meals'){
+            mealsItems.forEach((item) => {
+                if (item.selected) {
+                  totalCost += item.cost * numberOfPeople;
+                }
+            })
+        }
 
         return totalCost
     }
@@ -48,6 +65,7 @@ const ConferenceEvent = () => {
     //Total Cost
     const venuTotalCost = calculateTotalCost('venue')
     const addOnTotalCost = calculateTotalCost('addOn')
+    const mealsTotalCost = calculateTotalCost('meals')
 
     return(
         <div>
@@ -113,6 +131,44 @@ const ConferenceEvent = () => {
                 </div>
 
                 <h3 className="text-center my-5 p-2 border-1">Total Cost : {addOnTotalCost}</h3>
+            </section>
+
+            <section>
+                <h2 className="text-5xl">Meal Selection</h2>
+
+                <div>
+                    <label htmlFor="numberOfPeople">
+                    <h3>Number of People:</h3>
+                    </label>
+                    <input
+                        type="number"
+                        id="numberOfPeople"
+                        className="border-1"
+                        value={numberOfPeople}
+                        onChange={(e) => setNumberOfPeople(e.target.value)}
+                        min="1"
+                    />
+
+                    <div>
+                        {mealsItems.map((item, index) => (
+                            <div key={index}>
+
+                                <input
+                                    type="checkbox"
+                                    id={`meal_${index}`}
+                                    checked={item.selected}
+                                    onChange={() => handleMealSelection(index)}
+                                />
+
+                                <label htmlFor={`meal_${index}`}>{item.name}</label>
+
+                                <div>${item.cost}</div>
+                          </div>
+                        ))}
+                    </div>
+              </div>
+
+              <h3 className="text-center my-5 p-2 border-1">Total Cost : {mealsTotalCost}</h3>
             </section>
         </div>
     )
