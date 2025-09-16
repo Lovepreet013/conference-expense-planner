@@ -125,9 +125,9 @@ const ConferenceEvent = () => {
                                 <th className="py-3 px-6 text-left">Subtotal</th>
                             </tr>
                         </thead>
-                        <tbody className="text-gray-600 text-sm font-light">
+                        <tbody className="text-gray-600 text-md">
                             {items.map((item, index) => (
-                                <tr key={index} className="border-b border-gray-200 hover:bg-gray-50">
+                                <tr key={index} className="border-b border-gray-200 hover:bg-gray-100">
                                     <td className="py-3 px-6 text-left whitespace-nowrap">{item.name}</td>
                                     <td className="py-3 px-6 text-left">${item.cost}</td>
                                     <td className="py-3 px-6 text-left">

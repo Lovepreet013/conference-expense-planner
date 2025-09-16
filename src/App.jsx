@@ -30,7 +30,7 @@ function App() {
         style={{ backgroundImage: "url('https://cdn.pixabay.com/photo/2018/07/05/14/45/conference-3518465_1280.jpg')" }}
       >
         {/* Overlay */}
-        <div className="absolute inset-0 bg-black opacity-50"></div>
+        <div className="absolute inset-0 bg-blue-950 opacity-80"></div>
 
         {/* Content */}
         <div className="relative z-10 flex flex-col lg:flex-row items-center lg:items-start justify-between w-full max-w-6xl">
