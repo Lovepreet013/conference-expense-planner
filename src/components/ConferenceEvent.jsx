@@ -153,7 +153,7 @@ const ConferenceEvent = () => {
     return(
         <div className="container mx-auto p-4 md:p-8">
             {/* Venues Section */}
-            <section className="bg-white p-6 md:p-8 rounded-lg shadow-lg mb-8">
+            <section className="bg-white p-6 md:p-8 rounded-lg shadow-lg mb-8" id="venue">
                 <h2 className="text-4xl font-extrabold text-gray-800 mb-6 border-b-4 border-blue-500 pb-2 text-center">Venues</h2>
                 <div className="flex flex-wrap justify-center gap-6">
                     {venueItems.map((item, index) => (
@@ -179,7 +179,7 @@ const ConferenceEvent = () => {
             </section>
 
             {/* Add-ons Section */}
-            <section className="bg-white p-6 md:p-8 rounded-lg shadow-lg mb-8">
+            <section className="bg-white p-6 md:p-8 rounded-lg shadow-lg mb-8 " id="addOn">
                 <h2 className="text-4xl font-extrabold text-gray-800 mb-6 border-b-4 border-blue-500 pb-2 text-center">Add-ons</h2>
                 <div className="flex flex-wrap justify-center gap-6">
                     {addOnItems.map((item, index) => (
@@ -205,7 +205,7 @@ const ConferenceEvent = () => {
             </section>
 
             {/* Meal Selection Section */}
-            <section className="bg-white p-6 md:p-8 rounded-lg shadow-lg mb-8">
+            <section className="bg-white p-6 md:p-8 rounded-lg shadow-lg mb-8" id="meals">
                 <h2 className="text-4xl font-extrabold text-gray-800 mb-6 border-b-4 border-blue-500 pb-2 text-center">Meal Selection</h2>
                 <div className="flex flex-col items-center mb-8">
                     <label htmlFor="numberOfPeople" className="flex flex-col items-center">
@@ -246,7 +246,7 @@ const ConferenceEvent = () => {
             </section>
             
             {/* Total Cost Section */}
-            <div className="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+            <div className="bg-white p-6 md:p-8 rounded-lg shadow-lg" id="total">
                 <TotalCost
                     totalCosts={totalCosts}
                     handleClick={handleToggleItems}
